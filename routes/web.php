@@ -11,6 +11,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'test', 'middleware' => ['before', 'after']], function () use ($router) {
+    $router->get('/', 'ExampleController@hello');
+
+    $router->get('user/profile', function () {
+        // Uses Auth Middleware
+    });
 });
